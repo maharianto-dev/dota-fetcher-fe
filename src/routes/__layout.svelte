@@ -3,8 +3,8 @@
 	import NavBar from '../lib/components/NavBar.svelte';
 </script>
 
-<div class="h-screen flex flex-column">
-	<div class="h-24 flex">
+<div class="min-h-screen flex flex-col">
+	<div class="h-24 flex min-w-full">
 		<NavBar />
 	</div>
 	<div class="flex justify-center items-center flex-grow">
