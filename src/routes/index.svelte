@@ -1,21 +1,20 @@
 <script lang="ts">
-	import { hostname } from '../lib/stores/environment';
-	import UserSearchInput from '../lib/components/UserSearch/UserSearchInput.svelte';
-	import UserSearchResult from '../lib/components/UserSearch/UserSearchResult.svelte';
+	import { hostname } from '$lib/stores/environment';
+	import UserSearchInput from '$lib/components/UserSearch/UserSearchInput.svelte';
+	import UserSearchResult from '$lib/components/UserSearch/UserSearchResult.svelte';
+	import type { UserSearchResultModel } from '$lib/models/UserSearchResult.model';
 
-	let steamId;
-	let username;
+	let steamId: string;
+	let username: string;
 
-	let buttonUserNameSearchClick$;
+	let buttonUserNameSearchClick$: Promise<UserSearchResultModel[]>;
 
 	const onButtonSearchClick = async () => {
 		const url = `${hostname}/search-match-history-by-player-id?${new URLSearchParams({
 			id: steamId
 		})}`;
-		// const url = `http://localhost:8080/ping`
 		const response = await fetch(url);
 		const data = await response.json();
-		console.log('~ 🚀 ~ Class: , Function: onButtonSearchClick, Line 10 data: ', data);
 	};
 
 	const onButtonUserNameSearchClick = () => {
@@ -29,7 +28,6 @@
 
 		const response = await fetch(url);
 		const data = await response.json();
-		console.log('~ 🚀 ~ Class: , Function: onButtonUserNameSearchClick, Line 25 data: ', data);
 
 		return data;
 	};
